@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -6,25 +7,8 @@ void main() {
 
 // 1st part of a Stateful Widget
 // "Widget itself"
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-// 2nd part of a Stateful Widget
-// "State"
-class _AppState extends State<App> {
-  int counter = 0;
-
-  bool showTitle = true;
-
-  void toggleTitle() {
-    setState(() {
-      showTitle = !showTitle;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,24 +16,14 @@ class _AppState extends State<App> {
       theme: ThemeData(
         textTheme: const TextTheme(
           titleLarge: TextStyle(
-            color: Colors.red,
+            color: Color(0xFF232B55),
           ),
         ),
+        cardColor: const Color(0xFFF4EDDB),
+        colorScheme:
+            ColorScheme.fromSwatch(backgroundColor: const Color(0xFFE7626C)),
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFF4EDDB),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              showTitle ? const MyLargeTitle() : const Text('nothing'),
-              IconButton(
-                  onPressed: toggleTitle,
-                  icon: const Icon(Icons.remove_red_eye))
-            ],
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
